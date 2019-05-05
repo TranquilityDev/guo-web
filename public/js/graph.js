@@ -17,7 +17,7 @@ function getRandomInt(min, max) {
 var chart = c3.generate({
     data: {
         url: 'https://c3js.org/data/c3_test.csv',
-        type: 'line'
+        type: 'area-spline'
     }
 });
 setInterval(function() {
@@ -25,6 +25,7 @@ setInterval(function() {
         columns: [
             ['data1', getRandomInt(10, 500), getRandomInt(10, 500), getRandomInt(10, 500), getRandomInt(10, 500), getRandomInt(10, 500), getRandomInt(10, 500)],
             ['data2', getRandomInt(10, 500), getRandomInt(10, 500), getRandomInt(10, 500), getRandomInt(10, 500), getRandomInt(10, 500), getRandomInt(10, 500)],
+            ['data3', getRandomInt(10, 500), getRandomInt(10, 500), getRandomInt(10, 500), getRandomInt(10, 500), getRandomInt(10, 500), getRandomInt(10, 500)]
         ]
     });
 }, 1000);

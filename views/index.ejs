@@ -13,13 +13,22 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.30.1/js/jquery.tablesorter.min.js" charset="utf-8"></script>
     </script>
     <style media="screen">
-        .c3-axis-y text {
-            fill: white;
-            font-size: 12px;
+        .c3-axis-y text,
+        .c3-axis-y2 text {
+            fill: rgba(207, 45, 45, 0.86);
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .c3-axis-y2 text {
+            fill: green;
+            font-weight: bold;
+            font-size: 16px;
         }
 
         .c3-axis-x text {
-            font-size: 12px;
+            font-size: 16px;
+            font-weight: bold;
             fill: white;
         }
 
@@ -30,7 +39,14 @@
 
         .c3 .c3-axis-y path,
         .c3 .c3-axis-y line {
-            stroke: white; //stroke: none; – hides axis , color is customizable either using the color name or Hex code.
+            font-weight: bold;
+            stroke: rgba(207, 45, 45, 0.86); //stroke: none; – hides axis , color is customizable either using the color name or Hex code.
+        }
+
+        .c3 .c3-axis-y2 path,
+        .c3 .c3-axis-y2 line {
+            font-weight: bold;
+            stroke: green; //stroke: none; – hides axis , color is customizable either using the color name or Hex code.
         }
     </style>
 </head>
@@ -44,13 +60,12 @@ html, js, css
         <table>
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Grid</th>
-                    <th>Type</th>
-                    <th>Region</th>
-                    <th>Chickens</th>
-                    <th>Pigs</th>
-                    <th>Snakes</th>
+                    <th>FeCO2(%)</th>
+                    <th>FeO2(%)</th>
+                    <th>Flow(L/min)</th>
+                    <th>t(s)</th>
+                    <th>VO2(%)</th>
+                    <th>VCO2(%)</th>
                 </tr>
             </thead>
             <tbody id="table-data">
@@ -67,27 +82,23 @@ html, js, css
         $('#table-data').prepend(
             `
             <tr>
-                <td data-label="Name">
-                    XING - ${i}
+                <td data-label="FeCO2">
+                    3.88
                 </td>
-                <td data-label="Grid">
-                    ASDADS
+                <td data-label="FeO2">
+                    16.66
                 </td>
-                <td data-label="Type">
-                    Outpost
+                <td data-label="Flow">
+                    9.1
                 </td>
-                <td data-label="Region">
-                    The Ancient Isles
+                <td data-label="t">
+                    00.03
                 </td>
-                <td data-label="Chickens">
+                <td data-label="VO2">
                     <span class="no">&#10007;</span>
                 </td>
-                <td data-label="Pigs">
+                <td data-label="VCO2">
                     <span class="no">&#10007;</span>
-                </td>
-                <td data-label="Snakes">
-                    <span class="no">&#10007;</span>
-                </td>
             </tr>
         `
         );

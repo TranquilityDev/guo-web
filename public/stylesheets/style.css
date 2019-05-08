@@ -1,10 +1,11 @@
 body {
   padding: 50px;
-  background-color: rgb(54, 54, 54);
+  background-color: grey;
   color: #e5e5e5;
+  font: 16px/1.25 'Raleway', sans-serif;
   padding: 0.5em;
 }
-rgb(50, 36, 36)
+
 a {
   color: #00B7FF;
 }
@@ -16,10 +17,58 @@ img {
 
 #chart {
   width: 100%;
-  height: 500px;// 50vh, em
   margin-top: 30px;
 }
+
+.container {
+}
+#chart2 {
+  width: 50%;
+  margin-top: 300px;
+}
 @import url(https://fonts.googleapis.com/css?family=Oswald:400|Raleway:400,700,400italic,700italic);
+
+/************************************************/
+/*************** GENERAL SETTINGS ***************/
+/************************************************/
+
+*,
+:before,
+:after {
+  box-sizing: border-box;
+}
+
+main,
+footer {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 64em;
+  width: 100%;
+}
+
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 400;
+  margin: 0.25em 0;
+  text-align: center;
+}
+
+/* Links */
+a {
+  color: #a2ed56;
+}
+
+a:hover {
+  color: #83e4e2;
+}
+
 
 
 /************************************************/
@@ -52,7 +101,7 @@ table th {
   outline: none;
   padding-right: 2em;
   text-align: left;
-  // text-transform: uppercase;
+  text-transform: uppercase;
   transition: color 0.2s ease-in-out;
 }
 

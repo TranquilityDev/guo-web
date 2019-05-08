@@ -16,16 +16,58 @@ function getRandomInt(min, max) {
 }
 var chart = c3.generate({
     data: {
-        url: 'https://c3js.org/data/c3_test.csv',
-        type: 'area-spline'
+        x: 'x',
+        columns: [
+            ['x', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19],
+            ['upload', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            ['download'],
+            ['total']
+        ],
+        axes: {
+            data1: 'VO2',
+            data2: 'VCO2'
+        },
+        colors: {
+            VCO2: '#10e610',
+            VO2: '#ff0000',
+            VE: '#0000ff'
+        },
+        type: 'spline',
+        labels: true
+    },
+    axis: {
+        y: {
+            tick: {
+                format: function(x) {
+                    return x % 1 === 0 ? x : '';
+                }
+            }
+        },
+        y2: {
+            show: true
+        }
     }
 });
+
+let data = [];
 setInterval(function() {
-    chart.load({
-        columns: [
-            ['data1', getRandomInt(10, 500), getRandomInt(10, 500), getRandomInt(10, 500), getRandomInt(10, 500), getRandomInt(10, 500), getRandomInt(10, 500)],
-            ['data2', getRandomInt(10, 500), getRandomInt(10, 500), getRandomInt(10, 500), getRandomInt(10, 500), getRandomInt(10, 500), getRandomInt(10, 500)],
-            ['data3', getRandomInt(10, 500), getRandomInt(10, 500), getRandomInt(10, 500), getRandomInt(10, 500), getRandomInt(10, 500), getRandomInt(10, 500)]
-        ]
-    });
+    fetch('/getData', {
+            method: 'POST',
+            headers: {
+                "Accept": 'application/json, text/plain, */*',
+                "Content-Type": 'application/json',
+            }
+        })
+        .then(res => res.json())
+        .then(function(newData) {
+            data.push(newData);
+            let arr = data.slice(Math.max(data.length - 10, 1))
+            // alert(JSON.stringify(data));
+            chart.load({
+                json: arr,
+                keys: {
+                    value: ['x', 'upload', 'download', 'total'],
+                }
+            })
+        });
 }, 1000);

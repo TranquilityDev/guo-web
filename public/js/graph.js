@@ -18,15 +18,11 @@ var chart = c3.generate({
     data: {
         x: 'x',
         columns: [
-            ['x', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19],
-            ['upload', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            ['download'],
-            ['total']
+            ['x'],
+            ['co2'],
+            ['o2'],
+            ['ve']
         ],
-        axes: {
-            data1: 'VO2',
-            data2: 'VCO2'
-        },
         colors: {
             VCO2: '#10e610',
             VO2: '#ff0000',
@@ -50,8 +46,11 @@ var chart = c3.generate({
 });
 
 let data = [];
-setInterval(function() {
-    fetch('/getData', {
+
+var count = 0;
+function increment() {
+    // console.log(i);
+    fetch(`/getData?sec=${i}`, {
             method: 'POST',
             headers: {
                 "Accept": 'application/json, text/plain, */*',
@@ -66,8 +65,10 @@ setInterval(function() {
             chart.load({
                 json: arr,
                 keys: {
-                    value: ['x', 'upload', 'download', 'total'],
+                    value: ['x', 'co2', 'o2', 've'],
                 }
             })
+            count++
         });
-}, 1000);
+}
+setInterval(increment, 1000);
